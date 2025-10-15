@@ -1,0 +1,31 @@
+{
+  "name": "Kotlin Learning Environment",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installGradle": "true"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fwcd.kotlin",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle"
+      ],
+      "settings": {
+        "kotlin.languageServer.enabled": true,
+        "files.exclude": {
+          "**/.gradle": true,
+          "**/build": true
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [8080],
+  "remoteUser": "vscode"
+}
