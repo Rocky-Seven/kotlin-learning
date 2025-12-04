@@ -52,7 +52,7 @@ kotlinc src/basics/Hello.kt -include-runtime -d hello.jar
 java -jar hello.jar
 ```
 
-### Gradleプロジェクトの実行
+### Gradleプロジェクトの実行（推奨）
 
 ```bash
 # ビルド
@@ -64,6 +64,7 @@ java -jar hello.jar
 # テスト
 ./gradlew test
 ```
+##　学習用のコード実行には、単なるスクリプト実行（kotlinc -script）ではなく、Gradleを利用した ./gradlew run を推奨します。
 
 ## 📚 学習トピック
 
