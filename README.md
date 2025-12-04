@@ -64,7 +64,9 @@ java -jar hello.jar
 # テスト
 ./gradlew test
 ```
-##　学習用のコード実行には、単なるスクリプト実行（kotlinc -script）ではなく、Gradleを利用した ./gradlew run を推奨します。
+学習用のコード実行には、単なるスクリプト実行（kotlinc -script）ではなく、Gradleを利用した ./gradlew run を推奨します。
+./gradlew run
+依存関係の自動管理、統一されたビルド環境（テスト、IDE連携）、実行環境の再現性が高いため、実際の開発に近い方法で学習できます。
 
 ## 📚 学習トピック
 
