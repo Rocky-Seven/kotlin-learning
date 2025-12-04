@@ -23,5 +23,5 @@ kotlin {
 }
 
 application {
-    mainClass.set("com.learning.MainKt")
+    mainClass.set("com.learning.Day02ConditionalsKt")
 }
