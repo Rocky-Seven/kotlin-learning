@@ -16,13 +16,16 @@ Kotlinの学習用リポジトリです。GitHub Codespacesを使用して、ブ
 ```
 kotlin-learning/
 ├── src/
-│   ├── basics/          # 基本文法
-│   ├── oop/             # オブジェクト指向
-│   ├── collections/     # コレクション操作
-│   ├── functions/       # 関数とラムダ
-│   └── advanced/        # 応用トピック
-├── exercises/           # 練習問題
-└── README.md
+│   ├── main/
+│   │   └── kotlin/
+│   │       └── com/
+│   │           └── learning/ # 基本文法（学習中）
+│   ├── oop/              # オブジェクト指向（今後公開）
+│   ├── collections/      # コレクション操作（今後公開）
+│   ├── functions/        # 関数とラムダ（今後公開）
+│   └── advanced/         # 応用トピック（今後公開）
+├── exercises/            # 練習問題（今後公開）
+└── README.md（このファイル）
 ```
 
 ## 🛠️ 環境
