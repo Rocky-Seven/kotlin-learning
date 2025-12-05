@@ -19,13 +19,21 @@ kotlin-learning/
 │   ├── main/
 │   │   └── kotlin/
 │   │       └── com/
+<<<<<<< HEAD
 │   │           └── learning/ # 基本文法（学習中）
+=======
+│   │           └── learning/ # 基本文法(順次公開中)
+>>>>>>> 3d58ae5 (Modified README.md)
 │   ├── oop/              # オブジェクト指向（今後公開）
 │   ├── collections/      # コレクション操作（今後公開）
 │   ├── functions/        # 関数とラムダ（今後公開）
 │   └── advanced/         # 応用トピック（今後公開）
 ├── exercises/            # 練習問題（今後公開）
+<<<<<<< HEAD
 └── README.md（このファイル）
+=======
+└── README.md(このファイル)
+>>>>>>> 3d58ae5 (Modified README.md)
 ```
 
 ## 🛠️ 環境
