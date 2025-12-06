@@ -1,38 +1,58 @@
 # Kotlin初心者向け学習プラン（4週間）
 
+このSTUDYPLANは、GitHub Codespacesを使ったKotlin学習環境での体系的な学習プランです。
+
+**関連ブログ記事:**
+- [環境セットアップ編](https://my-studies.org/set-up-your-kotlin-learning-environment-with-github-codespaces/)
+- [学習開始編（Day 1）](https://my-studies.org/start-learning-with-a-kotlin-learning-environment-set-up-with-github-codespaces/)
+
+---
+
+## 学習の進捗チェックリスト
+
+- [ ] Day 00: 環境セットアップ
+- [ ] Day 01: 変数の基礎（val, var）
+- [ ] Day 02: 条件分岐（if, when）
+- [ ] Day 03: ループ処理（for, while）
+- [ ] Day 04: 関数の基礎
+- [ ] Day 05: コレクション入門
+- [ ] Day 06: Null安全性
+- [ ] Day 07: クラスとオブジェクト
+
+---
+
 ## 環境構築手順
 
 ### 1. リポジトリの準備
-```bash
-# 新しいリポジトリを作成
-mkdir kotlin-learning
-cd kotlin-learning
-git init
-```
 
-### 2. 設定ファイルの配置
-- `.devcontainer/devcontainer.json` を作成
-- `.devcontainer/setup.sh` を作成して実行権限を付与
-```bash
-chmod +x .devcontainer/setup.sh
-```
+詳細な環境構築手順は [SETUP.md](./SETUP.md) を参照してください。
 
-### 3. GitHubにプッシュ
+**簡易手順:**
 ```bash
-git add .
-git commit -m "Initial setup"
-git remote add origin https://github.com/YOUR_USERNAME/kotlin-learning.git
-git push -u origin main
+# 1. GitHubでリポジトリを作成
+# 2. Codespacesで開く
+# 3. Kotlinをインストール
+# 4. プロジェクト構造を作成
+# 5. 動作確認
 ```
-
-### 4. Codespacesで開く
-- GitHubリポジトリページで「Code」→「Codespaces」→「Create codespace on main」
 
 ---
 
 ## 第1週：基礎文法
 
-### Day 0-1：Hello World と基本構文
+### Day 00: 環境セットアップ
+
+**学習内容:**
+- GitHub Codespacesの使い方
+- Kotlinのインストール
+- プロジェクトの作成と実行
+
+**参考:** [SETUP.md](./SETUP.md)
+
+---
+
+### Day 01: 変数の基礎
+
 **学習内容:**
 - 変数宣言（val/var）
 - データ型（Int, String, Boolean, Double）
@@ -41,76 +61,290 @@ git push -u origin main
 
 **実践課題:**
 ```kotlin
-// src/main/kotlin/week1/Day01.kt
+// src/main/kotlin/com/learning/Day01Variables.kt
+package com.learning
+
 fun main() {
-    val name = "太郎"
-    var age = 25
-    println("こんにちは、${name}さん！")
-    println("${age}歳ですね。")
+    println("=== Day 1: 変数の基礎 ===\n")
     
-    age += 1
-    println("来年は${age}歳です。")
+    // 課題1: val（変更不可）とvar（変更可能）
+    val language = "Kotlin"
+    var level = 1
+    
+    println("学習言語: $language")
+    println("現在のレベル: $level")
+    
+    // 課題2: レベルアップ
+    level = 2
+    println("レベルアップ！ → $level")
+    
+    // 課題3: 自己紹介を作ってみよう
+    val myName = "あなたの名前" // ← ここを変更
+    val myAge = 25 // ← ここを変更
+    val myHobby = "プログラミング" // ← ここを変更
+    
+    println("\n=== 自己紹介 ===")
+    println("名前: $myName")
+    println("年齢: ${myAge}歳")
+    println("趣味: $myHobby")
 }
 ```
 
-### Day 2：制御構文(1)
+**参考ブログ:** [Day 1 - 変数の基礎](https://my-studies.org/start-learning-with-a-kotlin-learning-environment-set-up-with-github-codespaces/)
+
+---
+
+### Day 02: 条件分岐
+
 **学習内容:**
-- if式
+- if文とif式
 - when式
-### Day 3：制御構文(2)
-**学習内容:**
-- forループ
-- whileループ
-- 範囲（Range）
+- 複数条件の組み合わせ
+- Boolean演算子（&&, ||, !）
 
 **実践課題:**
 ```kotlin
-// FizzBuzzゲームを作成
-fun fizzBuzz(n: Int): String {
-    return when {
-        n % 15 == 0 -> "FizzBuzz"
-        n % 3 == 0 -> "Fizz"
-        n % 5 == 0 -> "Buzz"
-        else -> n.toString()
-    }
-}
+// src/main/kotlin/com/learning/Day02Conditionals.kt
+package com.learning
 
 fun main() {
-    for (i in 1..30) {
-        println("$i: ${fizzBuzz(i)}")
-    }
-}
-```
-
-### Day 5-7：関数
-**学習内容:**
-- 関数の定義と呼び出し
-- デフォルト引数
-- 名前付き引数
-- 単一式関数
-- ラムダ式の基礎
-
-**実践課題:**
-```kotlin
-// 簡単な電卓を作成
-fun calculate(a: Int, b: Int, operation: (Int, Int) -> Int): Int {
-    return operation(a, b)
-}
-
-fun main() {
-    val add = { x: Int, y: Int -> x + y }
-    val subtract = { x: Int, y: Int -> x - y }
+    println("=== Day 2: 条件分岐の基礎 ===\n")
     
-    println("10 + 5 = ${calculate(10, 5, add)}")
-    println("10 - 5 = ${calculate(10, 5, subtract)}")
+    // 課題1: 基本的なif文
+    val age = 20
+    if (age >= 18) {
+        println("あなたは成人です")
+    } else {
+        println("あなたは未成年です")
+    }
+    
+    // 課題2: if式（値を返す）
+    val score = 75
+    val result = if (score >= 60) "合格" else "不合格"
+    println("スコア: $score点 → $result")
+    
+    // 課題3: when式
+    val grade = 85
+    val evaluation = when {
+        grade >= 90 -> "A: 優秀"
+        grade >= 80 -> "B: 良好"
+        grade >= 70 -> "C: 普通"
+        grade >= 60 -> "D: もう少し"
+        else -> "F: 再試験"
+    }
+    println("成績: $grade点 → $evaluation")
 }
 ```
 
 ---
 
-## 第2週：オブジェクト指向
+### Day 03: ループ処理
 
-### Day 8-10：クラスとオブジェクト
+**学習内容:**
+- forループ
+- whileループ
+- 範囲（Range）
+- repeat関数
+- break/continue
+
+**実践課題:**
+```kotlin
+// src/main/kotlin/com/learning/Day03Loops.kt
+package com.learning
+
+fun main() {
+    println("=== Day 3: ループ処理 ===\n")
+    
+    // 課題1: forループ（範囲）
+    println("1から5まで:")
+    for (i in 1..5) {
+        println("カウント: $i")
+    }
+    
+    // 課題2: forループ（ステップ）
+    println("\n2の倍数:")
+    for (i in 2..10 step 2) {
+        println(i)
+    }
+    
+    // 課題3: whileループ
+    println("\nカウントダウン:")
+    var count = 5
+    while (count > 0) {
+        println("残り: $count")
+        count--
+    }
+    println("発射！🚀")
+    
+    // 課題4: FizzBuzz
+    println("\nFizzBuzz (1-20):")
+    for (i in 1..20) {
+        when {
+            i % 15 == 0 -> println("$i: FizzBuzz")
+            i % 3 == 0 -> println("$i: Fizz")
+            i % 5 == 0 -> println("$i: Buzz")
+            else -> println("$i: $i")
+        }
+    }
+}
+```
+
+---
+
+### Day 04: 関数の基礎
+
+**学習内容:**
+- 関数の定義と呼び出し
+- パラメータと戻り値
+- デフォルト引数
+- 名前付き引数
+- 単一式関数
+
+**実践課題:**
+```kotlin
+// src/main/kotlin/com/learning/Day04Functions.kt
+package com.learning
+
+// 課題1: 基本的な関数
+fun greet(name: String) {
+    println("こんにちは、${name}さん！")
+}
+
+// 課題2: 戻り値のある関数
+fun add(a: Int, b: Int): Int {
+    return a + b
+}
+
+// 課題3: 単一式関数
+fun multiply(a: Int, b: Int) = a * b
+
+// 課題4: デフォルト引数
+fun introduce(name: String, age: Int = 20, city: String = "東京") {
+    println("名前: $name, 年齢: $age歳, 出身: $city")
+}
+
+fun main() {
+    println("=== Day 4: 関数の基礎 ===\n")
+    
+    // 関数の呼び出し
+    greet("太郎")
+    
+    // 戻り値の利用
+    val sum = add(10, 5)
+    println("10 + 5 = $sum")
+    
+    val product = multiply(4, 3)
+    println("4 × 3 = $product")
+    
+    // デフォルト引数
+    introduce("花子")
+    introduce("一郎", 25)
+    introduce("次郎", 30, "大阪")
+}
+```
+
+---
+
+### Day 05: コレクション入門
+
+**学習内容:**
+- List（リスト）
+- Set（セット）
+- Map（マップ）
+- mutableとimmutable
+- 基本的なコレクション操作
+
+**実践課題:**
+```kotlin
+// src/main/kotlin/com/learning/Day05Collections.kt
+package com.learning
+
+fun main() {
+    println("=== Day 5: コレクション入門 ===\n")
+    
+    // 課題1: List
+    val fruits = listOf("りんご", "バナナ", "オレンジ")
+    println("果物: $fruits")
+    println("最初の果物: ${fruits[0]}")
+    println("果物の数: ${fruits.size}")
+    
+    // 課題2: Mutable List
+    val tasks = mutableListOf("買い物", "掃除")
+    tasks.add("洗濯")
+    println("\nタスク: $tasks")
+    
+    // 課題3: Set（重複なし）
+    val numbers = setOf(1, 2, 3, 2, 1)
+    println("\n数字セット: $numbers") // [1, 2, 3]
+    
+    // 課題4: Map（キーと値）
+    val scores = mapOf(
+        "田中" to 85,
+        "佐藤" to 92,
+        "鈴木" to 78
+    )
+    println("\n成績:")
+    for ((name, score) in scores) {
+        println("$name: $score点")
+    }
+}
+```
+
+---
+
+### Day 06: Null安全性
+
+**学習内容:**
+- Nullable型（?）
+- 安全呼び出し（?.）
+- エルビス演算子（?:）
+- !!演算子
+- let を使ったNull処理
+
+**実践課題:**
+```kotlin
+// src/main/kotlin/com/learning/Day06NullSafety.kt
+package com.learning
+
+fun main() {
+    println("=== Day 6: Null安全性 ===\n")
+    
+    // 課題1: Nullable型
+    var name: String? = "太郎"
+    name = null // OK
+    
+    // 課題2: 安全呼び出し
+    val length = name?.length
+    println("名前の長さ: $length") // null
+    
+    // 課題3: エルビス演算子
+    val displayName = name ?: "名無し"
+    println("表示名: $displayName")
+    
+    // 課題4: letを使った処理
+    val email: String? = "test@example.com"
+    email?.let {
+        println("メール送信: $it")
+    }
+    
+    // 課題5: 実践例
+    val users = mapOf(
+        1 to "田中",
+        2 to null,
+        3 to "佐藤"
+    )
+    
+    for ((id, userName) in users) {
+        val display = userName ?: "未登録"
+        println("ID: $id, 名前: $display")
+    }
+}
+```
+
+---
+
+### Day 07: クラスとオブジェクト
+
 **学習内容:**
 - クラスの定義
 - プロパティとメソッド
@@ -120,31 +354,64 @@ fun main() {
 
 **実践課題:**
 ```kotlin
-// 図書管理システムの基礎
+// src/main/kotlin/com/learning/Day07Classes.kt
+package com.learning
+
+// 課題1: 基本的なクラス
+class Person(val name: String, var age: Int) {
+    fun introduce() {
+        println("私は${name}です。${age}歳です。")
+    }
+    
+    fun birthday() {
+        age++
+        println("誕生日おめでとう！${age}歳になりました。")
+    }
+}
+
+// 課題2: データクラス
 data class Book(
     val title: String,
     val author: String,
-    val year: Int,
-    var isAvailable: Boolean = true
+    val year: Int
 )
 
-class Library {
-    private val books = mutableListOf<Book>()
+// 課題3: オブジェクト宣言（シングルトン）
+object Counter {
+    private var count = 0
     
-    fun addBook(book: Book) {
-        books.add(book)
-        println("「${book.title}」を追加しました")
+    fun increment() {
+        count++
     }
     
-    fun listAvailableBooks() {
-        println("\n利用可能な本:")
-        books.filter { it.isAvailable }
-            .forEach { println("- ${it.title} (${it.author})") }
-    }
+    fun getCount() = count
+}
+
+fun main() {
+    println("=== Day 7: クラスとオブジェクト ===\n")
+    
+    // クラスの使用
+    val person = Person("太郎", 25)
+    person.introduce()
+    person.birthday()
+    
+    // データクラスの使用
+    val book = Book("Kotlinプログラミング", "山田太郎", 2024)
+    println("\n本の情報: $book")
+    
+    // オブジェクトの使用
+    Counter.increment()
+    Counter.increment()
+    println("\nカウント: ${Counter.getCount()}")
 }
 ```
 
-### Day 11-12：継承とインターフェース
+---
+
+## 第2週：オブジェクト指向とコレクション操作
+
+### Day 08-10: 継承とインターフェース
+
 **学習内容:**
 - 継承（open、override）
 - 抽象クラス
@@ -153,7 +420,6 @@ class Library {
 
 **実践課題:**
 ```kotlin
-// 動物クラスの階層構造
 abstract class Animal(val name: String) {
     abstract fun makeSound(): String
     
@@ -169,47 +435,29 @@ class Dog(name: String) : Animal(name) {
 class Cat(name: String) : Animal(name) {
     override fun makeSound() = "ニャー！"
 }
-```
 
-### Day 13-14：高度なクラス機能
-**学習内容:**
-- Sealed クラス
-- Enum クラス
-- コンパニオンオブジェクト
-- 拡張関数
-
-**実践課題:**
-```kotlin
-// 状態管理システム
-sealed class Result<out T> {
-    data class Success<T>(val data: T) : Result<T>()
-    data class Error(val message: String) : Result<Nothing>()
-    object Loading : Result<Nothing>()
-}
-
-fun processResult(result: Result<String>) {
-    when (result) {
-        is Result.Success -> println("成功: ${result.data}")
-        is Result.Error -> println("エラー: ${result.message}")
-        is Result.Loading -> println("読み込み中...")
-    }
+fun main() {
+    val animals = listOf(
+        Dog("ポチ"),
+        Cat("タマ")
+    )
+    
+    animals.forEach { it.introduce() }
 }
 ```
 
 ---
 
-## 第3週：コレクションと関数型プログラミング
+### Day 11-14: コレクション操作関数
 
-### Day 15-17：コレクション操作
 **学習内容:**
-- List、Set、Map
-- mutableとimmutable
 - filter、map、reduce
 - forEach、any、all、none
+- sorted、groupBy
+- flatMap、zip
 
 **実践課題:**
 ```kotlin
-// 学生成績管理システム
 data class Student(val name: String, val score: Int)
 
 fun main() {
@@ -224,7 +472,7 @@ fun main() {
     val average = students.map { it.score }.average()
     println("平均点: ${"%.1f".format(average)}")
     
-    // 80点以上の生徒
+    // 80点以上
     val topStudents = students.filter { it.score >= 80 }
     println("\n80点以上:")
     topStudents.forEach { println("${it.name}: ${it.score}点") }
@@ -235,73 +483,33 @@ fun main() {
 }
 ```
 
-### Day 18-19：高階関数とスコープ関数
+---
+
+## 第3週：高度な機能
+
+### Day 15-17: ラムダ式と高階関数
+
 **学習内容:**
+- ラムダ式の基礎
 - 高階関数の作成
-- let、apply、run、also、with
-- シーケンス（Sequence）
+- スコープ関数（let、apply、run、also、with）
 
-**実践課題:**
-```kotlin
-// 設定ビルダーパターン
-class Config {
-    var host = "localhost"
-    var port = 8080
-    var timeout = 3000
-    
-    fun print() {
-        println("Host: $host, Port: $port, Timeout: ${timeout}ms")
-    }
-}
+---
 
-fun buildConfig(builder: Config.() -> Unit): Config {
-    return Config().apply(builder)
-}
+### Day 18-21: 実践的なパターン
 
-fun main() {
-    val config = buildConfig {
-        host = "example.com"
-        port = 443
-        timeout = 5000
-    }
-    config.print()
-}
-```
-
-### Day 20-21：Null安全性
 **学習内容:**
-- Nullable型（?）
-- 安全呼び出し（?.）
-- エルビス演算子（?:）
-- !!演算子
-- let を使ったNull処理
-
-**実践課題:**
-```kotlin
-// ユーザー検索システム
-data class User(val id: Int, val name: String, val email: String?)
-
-class UserRepository {
-    private val users = listOf(
-        User(1, "田中太郎", "tanaka@example.com"),
-        User(2, "佐藤花子", null),
-        User(3, "鈴木一郎", "suzuki@example.com")
-    )
-    
-    fun findById(id: Int): User? = users.find { it.id == id }
-    
-    fun getUserEmail(id: Int): String {
-        val user = findById(id)
-        return user?.email ?: "メールアドレスが登録されていません"
-    }
-}
-```
+- Sealed クラス
+- Enum クラス
+- 拡張関数
+- DSL（Domain Specific Language）
 
 ---
 
 ## 第4週：実践プロジェクト
 
-### Day 22-24：TODO管理アプリ（CLI版）
+### Day 22-28: TODO管理アプリ（CLI版）
+
 **目標:** これまで学んだ内容を統合した実用的なアプリを作成
 
 **実装機能:**
@@ -339,7 +547,6 @@ class TodoApp {
         tasks.forEach { task ->
             val status = if (task.isCompleted) "✓" else "○"
             println("[$status] ${task.id}. ${task.title}")
-            println("   ${task.description}")
         }
     }
     
@@ -386,43 +593,6 @@ fun main() {
 }
 ```
 
-### Day 25-26：テストの作成
-**学習内容:**
-- JUnit 5の基礎
-- アサーション
-- テストのベストプラクティス
-
-**テスト例:**
-```kotlin
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
-
-class TodoAppTest {
-    @Test
-    fun `タスクを追加できる`() {
-        val app = TodoApp()
-        app.addTask("買い物", "牛乳を買う")
-        
-        assertEquals(1, app.getTaskCount())
-    }
-    
-    @Test
-    fun `タスクを完了にできる`() {
-        val app = TodoApp()
-        app.addTask("掃除", "部屋を掃除する")
-        app.toggleTask(1)
-        
-        assertTrue(app.getTask(1)?.isCompleted == true)
-    }
-}
-```
-
-### Day 27-28：リファクタリングと拡張
-**目標:**
-- コードの改善
-- 新機能の追加（優先度、期限など）
-- エラーハンドリングの改善
-
 ---
 
 ## 学習のコツ
@@ -454,18 +624,23 @@ class TodoAppTest {
 
 ## トラブルシューティング
 
-### Codespacesが起動しない
+詳細なトラブルシューティングは [SETUP.md](./SETUP.md) を参照してください。
+
+### よくある問題
+
+**Codespacesが起動しない:**
 - ブラウザのキャッシュをクリア
 - 別のブラウザで試す
-- リポジトリの.devcontainerフォルダの配置を確認
 
-### Kotlinがインストールされない
-- setup.shの実行権限を確認
-- ログを確認: `cat /tmp/setup.log`
+**Kotlinがインストールされない:**
+- SETUP.mdの手順を再実行
+- 実行権限を確認
 
-### Gradleビルドが失敗する
+**Gradleビルドが失敗する:**
 ```bash
 ./gradlew clean build --refresh-dependencies
 ```
+
+---
 
 頑張ってください！🚀

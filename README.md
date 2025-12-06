@@ -2,6 +2,12 @@
 
 Kotlinの学習用リポジトリです。GitHub Codespacesを使用して、ブラウザ上で即座にKotlin開発環境を構築できます。
 
+**関連ブログ記事:**
+- [環境セットアップ編](https://my-studies.org/set-up-your-kotlin-learning-environment-with-github-codespaces/)
+- [学習開始編（Day 1）](https://my-studies.org/start-learning-with-a-kotlin-learning-environment-set-up-with-github-codespaces/)
+
+---
+
 ## セットアップ方法
 
 1. このリポジトリの `Code` ボタンをクリック
@@ -9,6 +15,10 @@ Kotlinの学習用リポジトリです。GitHub Codespacesを使用して、ブ
 3. `Create codespace on main` をクリック
 
 数分でKotlin開発環境が自動的にセットアップされます。
+
+詳細な環境構築手順は **[SETUP.md](./SETUP.md)** を参照してください。
+
+---
 
 ## プロジェクト構成
 
@@ -19,25 +29,31 @@ kotlin-learning/
 │   │   └── kotlin/
 │   │       └── com/
 │   │           └── learning/
-│   │               ├── Main.kt          # 初期ファイル
-│   │               ├── Day01Variables.kt # Day 1: 変数の基礎
+│   │               ├── Main.kt              # 初期ファイル
+│   │               ├── Day01Variables.kt    # Day 1: 変数の基礎
 │   │               ├── Day02Conditionals.kt # Day 2: 条件分岐
 │   │               └── ...
 │   └── test/
+├── SETUP.md         # 詳細な環境構築ガイド
+├── STUDYPLAN.md     # 4週間学習プラン
 ├── build.gradle.kts
 └── README.md
 ```
+
+---
 
 ## 開発環境
 
 このCodespaceには以下が含まれています：
 
-- Kotlin 1.9+
+- Kotlin 2.0+
 - Gradle
-- OpenJDK 17
+- OpenJDK 21
 - VSCode拡張機能
   - Kotlin Language Support
   - Gradle for Java
+
+---
 
 ## 基本的な使い方
 
@@ -64,21 +80,32 @@ application {
 }
 ```
 
-ファイル名の規則：
+**ファイル名の規則：**
 - `Day01Variables.kt` → `Day01VariablesKt`
 - `Day02Conditionals.kt` → `Day02ConditionalsKt`
 - `Main.kt` → `MainKt`
 
+変更後、以下のコマンドで実行：
+```bash
+./gradlew run
+```
+
+---
+
 ## 学習の進捗
 
-- [x] Day 00: 環境セットアップ
-- [x] Day 01: 変数の基礎（val, var）
+- [ ] Day 00: 環境セットアップ
+- [ ] Day 01: 変数の基礎（val, var）
 - [ ] Day 02: 条件分岐（if, when）
 - [ ] Day 03: ループ処理（for, while）
 - [ ] Day 04: 関数の基礎
 - [ ] Day 05: コレクション入門
 - [ ] Day 06: Null安全性
 - [ ] Day 07: クラスとオブジェクト
+
+詳細な学習計画は **[STUDYPLAN.md](./STUDYPLAN.md)** を参照してください。
+
+---
 
 ## 学習トピック
 
@@ -113,6 +140,8 @@ application {
 - ジェネリクス
 - アノテーション
 
+---
+
 ## 便利なコマンド
 
 ```bash
@@ -131,6 +160,8 @@ git commit -m "Day02の練習完了"
 git push
 ```
 
+---
+
 ## コミットメッセージの例
 
 わかりやすいメッセージをつけましょう：
@@ -139,6 +170,8 @@ git push
 - `git commit -m "Day02: 条件分岐を追加"`
 - `git commit -m "Day03: ループ処理の練習"`
 - `git commit -m "Day01の変数宣言を修正"`
+
+---
 
 ## 練習問題
 
@@ -150,9 +183,13 @@ git push
 
 各問題にはテストファイルが含まれています。
 
+---
+
 ## コントリビューション
 
 学習内容の追加や改善のPRを歓迎します！
+
+---
 
 ## ライセンス
 
