@@ -32,7 +32,7 @@ git push -u origin main
 
 ## 第1週：基礎文法
 
-### Day 1-2：Hello World と基本構文
+### Day 0-1：Hello World と基本構文
 **学習内容:**
 - 変数宣言（val/var）
 - データ型（Int, String, Boolean, Double）
@@ -53,10 +53,12 @@ fun main() {
 }
 ```
 
-### Day 3-4：制御構文
+### Day 2：制御構文(1)
 **学習内容:**
 - if式
 - when式
+### Day 3：制御構文(2)
+**学習内容:**
 - forループ
 - whileループ
 - 範囲（Range）
