@@ -73,4 +73,13 @@ fun main() {
     println("1. myScore と myAge に値を入れてみましょう")
     println("2. if文 や when式 を使って判定を作ってみましょう")
     println("3. 複数の条件を組み合わせてみましょう")
+
+    // エラー体験: when式のelse忘れ
+val testScore = 50
+val testResult = when {
+    testScore >= 80 -> "優秀"
+    testScore >= 60 -> "合格"
+    // else を書かないとエラー！
+    else -> "不合格" // これを追加
+}
 }
