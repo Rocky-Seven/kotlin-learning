@@ -141,11 +141,10 @@ fun main() {
 ### Day 03: ループ処理
 
 **学習内容:**
-- forループ
+- - forループ（範囲・ステップ）
 - whileループ
-- 範囲（Range）
-- repeat関数
-- break/continue
+- when式とループの組み合わせ
+- FizzBuzzによる実践
 
 **実践課題:**
 ```kotlin
