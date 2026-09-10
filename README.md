@@ -1,78 +1,36 @@
-# Kotlin学習リポジトリ
+# kotlin-learning
 
-Kotlinの学習用リポジトリです。GitHub Codespacesを使用して、ブラウザ上で即座にKotlin開発環境を構築できます。
+Kotlinの基礎文法を、GitHub Codespaces上で手を動かしながら学んでいくリポジトリである。学習の様子はブログ「[my-studies.org](https://my-studies.org)」の「Kotlin入門」シリーズとして記事化している。
 
-**関連ブログ「学びを始めよう」:**
-- [環境セットアップ編](https://my-studies.org/set-up-your-kotlin-learning-environment-with-github-codespaces/)
-- [学習開始編（Day 1）](https://my-studies.org/start-learning-with-a-kotlin-learning-environment-set-up-with-github-codespaces/)
+A hands-on Kotlin learning repository built and documented alongside the "Kotlin入門" article series on my-studies.org. All code in this repository is written and tested inside GitHub Codespaces.
 
----
+## 環境構築
 
-## セットアップ方法
-
-1. このリポジトリの `Code` ボタンをクリック
-2. `Codespaces` タブを選択
-3. `Create codespace on main` をクリック
-
-数分でKotlin開発環境が自動的にセットアップされます。
-
-詳細な環境構築手順は **[SETUP.md](./SETUP.md)** を参照してください。
-
----
+Codespaceの作成からKotlin/Gradleのインストールまでは [SETUP.md](./SETUP.md) にまとめてある。初めてこのリポジトリを使う場合は、まずそちらを参照すること。
 
 ## プロジェクト構成
 
 ```
 kotlin-learning/
+├── .devcontainer/
+│   └── devcontainer.json      # Codespaces環境定義（Java 21 + Kotlin拡張機能）
 ├── src/
-│   ├── main/
-│   │   └── kotlin/
-│   │       └── com/
-│   │           └── learning/
-│   │               ├── Main.kt              # 初期ファイル
-│   │               ├── Day01Variables.kt    # Day 1: 変数の基礎
-│   │               ├── Day02Conditionals.kt # Day 2: 条件分岐
-│   │               └── ...
-│   └── test/
-├── SETUP.md         # 詳細な環境構築ガイド
-├── STUDYPLAN.md     # 4週間学習プラン
+│   ├── main/kotlin/com/learning/
+│   │   ├── Day01Variables.kt
+│   │   ├── Day02Conditionals.kt
+│   │   ├── Day03Loops.kt
+│   │   └── ...
+│   └── test/kotlin/com/learning/
 ├── build.gradle.kts
-└── README.md
+├── settings.gradle.kts
+├── .gitignore
+├── README.md
+└── SETUP.md
 ```
 
----
+## 実行方法
 
-## 開発環境
-
-このCodespaceには以下が含まれています：
-
-- Kotlin 2.0+
-- Gradle
-- OpenJDK 21
-- VSCode拡張機能
-  - Kotlin Language Support
-  - Gradle for Java
-
----
-
-## 基本的な使い方
-
-### プログラムの実行方法
-
-```bash
-# ビルドと実行
-./gradlew run
-
-# ビルドのみ
-./gradlew build
-
-# テスト実行
-./gradlew test
-```
-
-### 実行するファイルの変更方法
-
-`build.gradle.kts` の `mainClass` を変更します：
+各Dayのコードは`src/main/kotlin/com/learning/`フォルダにまとめて入っている。実行したいファイルを切り替えるには、`build.gradle.kts`の`mainClass`を変更する。
 
 ```kotlin
 application {
@@ -80,121 +38,57 @@ application {
 }
 ```
 
-**ファイル名の規則：**
+ファイル名の規則：
+
 - `Day01Variables.kt` → `Day01VariablesKt`
 - `Day02Conditionals.kt` → `Day02ConditionalsKt`
 - `Main.kt` → `MainKt`
 
-変更後、以下のコマンドで実行：
+変更後、以下のコマンドで実行する。
+
 ```bash
 ./gradlew run
 ```
 
----
+### トラブルシューティング
 
-## 学習の進捗
+**`bash: ./gradlew: No such file or directory`**
 
-- [ ] Day 00: 環境セットアップ
-- [ ] Day 01: 変数の基礎（val, var）
-- [ ] Day 02: 条件分岐（if, when）
-- [ ] Day 03: ループ処理（for, while）
-- [ ] Day 04: 関数の基礎
-- [ ] Day 05: コレクション入門
-- [ ] Day 06: Null安全性
-- [ ] Day 07: クラスとオブジェクト
-
-詳細な学習計画は **[STUDYPLAN.md](./STUDYPLAN.md)** を参照してください。
-
----
-
-## 学習トピック
-
-### 基礎文法
-- 変数と定数（var, val）
-- データ型
-- 制御フロー（if, when, for, while）
-- Null安全性
-
-### 関数
-- 関数定義
-- デフォルト引数
-- 名前付き引数
-- 拡張関数
-- ラムダ式
-
-### オブジェクト指向
-- クラスとオブジェクト
-- 継承
-- インターフェース
-- データクラス
-- Sealed Class
-
-### コレクション
-- List, Set, Map
-- コレクション操作関数（map, filter, reduce）
-- Sequence
-
-### 応用トピック
-- コルーチン
-- DSL
-- ジェネリクス
-- アノテーション
-
----
-
-## 便利なコマンド
+プロジェクトのルートディレクトリ（このリポジトリのクローン先、Codespaceでは`/workspaces/kotlin-learning`）にいないことが原因である。
 
 ```bash
-# 現在のディレクトリ確認
-pwd
-
-# ファイル一覧表示
-ls -la src/main/kotlin/com/learning/
-
-# Gitの状態確認
-git status
-
-# 変更を保存
-git add .
-git commit -m "Day02の練習完了"
-git push
+cd /workspaces/kotlin-learning
+./gradlew run
 ```
 
----
+`gradlew`自体が存在しない場合は、ルートディレクトリで以下を実行してwrapperを生成する。
 
-## コミットメッセージの例
+```bash
+gradle wrapper
+```
 
-わかりやすいメッセージをつけましょう：
+※ `settings.gradle.kts`があるディレクトリ以外（サブフォルダなど）で実行すると、「Project directory ... is not part of the build」というエラーになるので、必ずリポジトリのルートで実行すること。
 
-- `git commit -m "Day01: 変数の基本を学習"`
-- `git commit -m "Day02: 条件分岐を追加"`
-- `git commit -m "Day03: ループ処理の練習"`
-- `git commit -m "Day01の変数宣言を修正"`
+**`Could not find or load main class com.learning.XxxYyy`**
 
----
+`mainClass`の指定で末尾の`Kt`を付け忘れている。`com.learning.Day03Loops`ではなく`com.learning.Day03LoopsKt`のように、必ずファイル名＋`Kt`にする。
 
-## 練習問題
+**大量のログや警告が表示される**
 
-`exercises/` ディレクトリに難易度別の練習問題があります：
+`BUILD SUCCESSFUL`の文字と、プログラムの`println`による出力が表示されていれば実行は成功している。`[Incubating] Problems report`やDeprecated警告、`IDLE`表示などはGradle自体のメッセージであり、無視して問題ない。
 
-- `easy/` - 初級
-- `medium/` - 中級
-- `hard/` - 上級
+## 学習内容（Kotlin入門シリーズ）
 
-各問題にはテストファイルが含まれています。
+各回の詳しい解説はmy-studies.orgの記事を参照のこと。
 
----
-
-## コントリビューション
-
-学習内容の追加や改善のPRを歓迎します！
-
----
+| # | ファイル | 内容 |
+|---|---|---|
+| 01 | `Day01Variables.kt` | 変数（val/var）、基本的な型 |
+| 02 | `Day02Conditionals.kt` | if文・if式、when式、Boolean演算子 |
+| 03 | `Day03Loops.kt` | forループ（範囲・ステップ）、whileループ、FizzBuzz |
+| 04 | `Day04Functions.kt`（予定） | 関数の定義・戻り値・デフォルト引数・単一式関数 |
+| 05 | `Day05Collections.kt`（予定） | List・Set・Mapの基礎 |
 
 ## ライセンス
 
-MIT License
-
----
-
-Happy Learning! 🎉
+学習目的のリポジトリである。コードは自由に参照・流用して構わない。

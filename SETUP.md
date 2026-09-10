@@ -1,44 +1,39 @@
-# GitHub Codespaces Kotlin環境セットアップ完全ガイド
+# SETUP.md — Kotlin学習環境セットアップガイド
 
-このガイドに従えば、次回から迷わずKotlin学習環境を構築できます。
+このガイドに従えば、GitHub Codespaces上にKotlinの学習環境を構築できる。初回セットアップと、Codespace削除後の再構築の両方に対応している。
 
 ---
 
-## 📋 事前準備
+## 事前準備
 
-### 必要なもの
 - GitHubアカウント
-- Webブラウザ（Chrome、Edge、Firefox、Safari）
+- Webブラウザ（Chrome、Edge、Firefox、Safariいずれか）
 
 ---
 
-## 🚀 ステップ1: GitHubリポジトリの作成
+## ステップ1：リポジトリの作成
 
-### 1-1. GitHubで新しいリポジトリを作成
-
-1. https://github.com/new にアクセス
-2. 以下を入力：
-   - **Repository name**: `kotlin-learning`（任意の名前でOK）
+1. https://github.com/new にアクセスする
+2. 以下を入力する
+   - **Repository name**: `kotlin-learning`（任意の名前でよい）
    - **Description**: `Kotlin学習用リポジトリ`
-   - **Public** または **Private** を選択
-   - **Add a README file** にチェック ✓
-3. 「**Create repository**」をクリック
+   - Public または Private を選択する
+   - **Add a README file** にチェックを入れる
+3. 「**Create repository**」をクリックする
 
 ---
 
-## 🛠️ ステップ2: 設定ファイルの準備
+## ステップ2：Codespaceを起動し、設定ファイルを準備する
 
 ### 2-1. リポジトリをCodespacesで開く
 
-1. 作成したリポジトリのページで「**Code**」ボタンをクリック
-2. 「**Codespaces**」タブを選択
-3. 「**Create codespace on main**」をクリック
+1. リポジトリページで「**Code**」ボタンをクリックする
+2. 「**Codespaces**」タブを選択する
+3. 「**Create codespace on main**」をクリックする（起動まで1〜2分ほどかかる）
 
-→ Codespacesが起動します（1-2分かかります）
+### 2-2. devcontainer.jsonと.gitignoreを作成する
 
-### 2-2. .devcontainerディレクトリとファイルを作成
-
-ターミナルで以下のコマンドを**コピー&ペースト**して実行：
+ターミナルで以下をまとめてコピー&ペーストして実行する。
 
 ```bash
 # .devcontainerディレクトリを作成
@@ -49,7 +44,7 @@ cat > .devcontainer/devcontainer.json << 'EOF'
 {
   "name": "Kotlin Learning Environment",
   "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
-  
+
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "21",
@@ -79,7 +74,7 @@ cat > .devcontainer/devcontainer.json << 'EOF'
 }
 EOF
 
-# .gitignoreを作成
+# .gitignoreを作成（ブラックリスト方式）
 cat > .gitignore << 'EOF'
 # Gradle
 .gradle/
@@ -111,31 +106,25 @@ out/
 .DS_Store
 EOF
 
-# 確認
 echo "✅ 設定ファイルの作成完了"
 ls -la .devcontainer/
 ```
 
-### 2-3. GitHubにコミット&プッシュ
+### 2-3. GitHubにコミット・プッシュする
 
 ```bash
-# Gitの初期設定（初回のみ）
+# 初回のみ
 git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 
-# ファイルをコミット
 git add .
-git commit -m "Add devcontainer configuration and gitignore"
+git commit -m "devcontainerとgitignoreを追加"
 git push
 ```
 
 ---
 
-## 🔧 ステップ3: Kotlinのインストール
-
-### 3-1. Kotlinコンパイラをインストール
-
-以下のコマンドを**まとめて**コピー&ペーストして実行：
+## ステップ3：Kotlinをインストールする
 
 ```bash
 cd /tmp
@@ -149,20 +138,21 @@ sudo ln -s /usr/local/kotlinc/bin/kotlinc /usr/local/bin/kotlinc
 kotlin -version
 ```
 
-**期待される出力:**
+以下のように表示されればインストール成功である。
+
 ```
 Kotlin version 2.0.20-release-360 (JRE 21.0.8+9-LTS)
 ```
 
-### 3-2. Gradleの確認
+### Gradleの確認
 
-Gradleは自動でインストールされているはずです。確認：
+devcontainerの機能で自動インストールされているはずだが、念のため確認する。
 
 ```bash
 gradle -version
 ```
 
-もし「command not found」と出たら：
+「command not found」と表示された場合のみ、以下で個別にインストールする。
 
 ```bash
 cd /tmp
@@ -178,18 +168,14 @@ gradle -version
 
 ---
 
-## 📦 ステップ4: Kotlinプロジェクトの作成
-
-### 4-1. プロジェクトディレクトリに移動
+## ステップ4：Kotlinプロジェクトを作成する
 
 ```bash
 cd /workspaces/*
 pwd  # 現在地を確認
 ```
 
-### 4-2. プロジェクト構造を作成
-
-以下をまとめてコピー&ペースト：
+以下をまとめてコピー&ペーストして実行する。
 
 ```bash
 # ディレクトリ構造を作成
@@ -239,7 +225,7 @@ package com.learning
 fun main() {
     println("🎉 Kotlin学習環境へようこそ！")
     println("Hello, Kotlin!")
-    
+
     val name = "初心者"
     println("$name さん、Kotlinの学習を始めましょう！")
 }
@@ -248,22 +234,84 @@ EOF
 # Gradle Wrapperを生成
 gradle wrapper
 
-# 確認
 echo "✅ プロジェクト作成完了"
 ls -la
 ```
+## ステップ5：実行するファイルの切り替え
 
----
+このプロジェクトでは複数の日のコードが同じ`src/main/kotlin/com/learning/`フォルダに入っている。実行したいファイルは`build.gradle.kts`の`mainClass`で指定する。
 
-## ✅ ステップ5: 動作確認
+```kotlin
+application {
+    mainClass.set("com.learning.Day01VariablesKt") // 実行したいファイル名に変更
+}
+```
 
-### 5-1. プログラムを実行
+ファイル名の規則：
+
+- `Day01Variables.kt` → `Day01VariablesKt`
+- `Day02Conditionals.kt` → `Day02ConditionalsKt`
+- `Main.kt` → `MainKt`
+
+変更後、以下のコマンドで実行する。
 
 ```bash
 ./gradlew run
 ```
 
-**期待される出力:**
+---
+
+## ステップ6：Codespace再開時によくあるトラブル
+
+Codespaceを再開したときや、しばらく間が空いてから作業を再開したときに起きやすい問題をまとめておく。
+
+### 6-1. `bash: ./gradlew: No such file or directory`
+
+プロジェクトのルートディレクトリ（Codespaceでは`/workspaces/kotlin-learning`）にいないことが原因である。
+
+```bash
+pwd   # 今いる場所を確認
+cd /workspaces/kotlin-learning
+./gradlew run
+```
+
+`ls`を実行して`settings.gradle.kts`が見えれば、正しい場所にいる。
+
+### 6-2. ルートに移動しても`gradlew`自体が無い
+
+その場合はプロジェクトのルートディレクトリで以下を実行し、wrapper一式（`gradlew`、`gradlew.bat`、`gradle`フォルダ）を生成する。
+
+```bash
+gradle wrapper
+```
+
+注意: `settings.gradle.kts`があるディレクトリ以外（例: `src/main/kotlin/com`のようなサブフォルダ）で実行すると、以下のようなエラーになる。
+
+```
+Project directory '...' is not part of the build defined by settings file '.../settings.gradle.kts'.
+```
+
+必ずリポジトリのルートディレクトリで実行すること。
+
+### 6-3. `Could not find or load main class com.learning.XxxYyy`
+
+`mainClass`の指定で末尾の`Kt`を付け忘れている。`com.learning.Day03Loops`ではなく`com.learning.Day03LoopsKt`のように、ファイル名にそのまま`Kt`を付ける必要がある。
+
+### 6-4. 実行時に大量のログや警告が出る
+
+`BUILD SUCCESSFUL`の文字と、プログラムの`println`による出力が確認できていれば実行は成功している。`[Incubating] Problems report`やDeprecated警告、待機中を示す`IDLE`表示などはGradle自体のメッセージであり、無視して問題ない。
+
+---
+---
+
+## ステップ7：動作確認
+
+```bash
+./gradlew run
+```
+
+以下のように表示されれば成功である。
+
 ```
 > Task :run
 🎉 Kotlin学習環境へようこそ！
@@ -273,160 +321,103 @@ Hello, Kotlin!
 BUILD SUCCESSFUL
 ```
 
-### 5-2. 最終確認
-
-```bash
-# 全体チェック
-echo "=== Kotlin ==="
-kotlin -version
-
-echo -e "\n=== Gradle ==="
-gradle -version
-
-echo -e "\n=== プロジェクト構造 ==="
-tree src/ 2>/dev/null || find src/ -type f
-
-echo -e "\n=== Git状態 ==="
-git status
-```
-
 ---
 
-## 📝 ステップ6: Gitに保存
+## ステップ8：Gitに保存する
 
 ```bash
-# すべての変更をコミット
 git add .
-git commit -m "Setup Kotlin learning environment"
+git commit -m "Kotlin学習環境をセットアップ"
 git push
-
-# 確認
 git status
 ```
 
-**期待される出力:**
-```
-On branch main
-nothing to commit, working tree clean
-```
+`nothing to commit, working tree clean` と表示されれば完了である。
 
 ---
 
-## 🎓 完了！学習を開始
+## Codespaceの運用ルール（重要）
 
-セットアップ完了です！以下のコマンドで学習を始められます：
+無料プランの場合、一定期間操作がないとCodespaceは自動的に停止する。さらにそのまま放置すると削除予告メールが届き、期限までに再開しなければ自動的に削除される。停止中のCodespaceも削除されるまではストレージを消費し続け、無料プランの月間ストレージ上限（15GB）を圧迫する。
 
-```bash
-# プログラムを実行
-./gradlew run
-
-# 新しいファイルを作成
-# src/main/kotlin/com/learning/ 配下にファイルを追加
-
-# ビルド
-./gradlew build
-
-# クリーン
-./gradlew clean
-```
+そのため、**作業が一区切りついたら都度`git push`でコードをリポジトリに保存し、自分でCodespaceを削除しておく**のが基本の運用である。
 
 ---
 
-## 🔄 次回以降のセットアップ（新しいCodespaceを作る場合）
+## 次回以降のセットアップ（新しいCodespaceを作る場合）
+
+プロジェクトファイルは既にGitHubに保存されているため、再作成は不要である。以下の手順のみでよい。
 
 1. GitHubリポジトリページを開く
 2. 「Code」→「Codespaces」→「Create codespace on main」
-3. Codespacesが起動したら、**ステップ3（Kotlinインストール）** のみ実行：
+3. 起動したら、Kotlinのみ再インストールする
 
 ```bash
-# Kotlinインストール（再実行）
 cd /tmp
 wget https://github.com/JetBrains/kotlin/releases/download/v2.0.20/kotlin-compiler-2.0.20.zip
 unzip kotlin-compiler-2.0.20.zip
 sudo mv kotlinc /usr/local/kotlinc
 sudo ln -s /usr/local/kotlinc/bin/kotlin /usr/local/bin/kotlin
 sudo ln -s /usr/local/kotlinc/bin/kotlinc /usr/local/bin/kotlinc
+```
 
-# プロジェクトディレクトリに移動
+4. プロジェクトディレクトリへ移動して動作確認する
+
+```bash
 cd /workspaces/*
-
-# 動作確認
 ./gradlew run
 ```
 
-プロジェクトファイルは既にGitHubに保存されているので、再作成不要です！
-
 ---
 
-## 🆘 トラブルシューティング
+## トラブルシューティング（その他）
 
-### Q1: Kotlinコンパイラのダウンロードが遅い
-**A:** 別のミラーを使用：
-```bash
-cd /tmp
-curl -LO https://github.com/JetBrains/kotlin/releases/download/v2.0.20/kotlin-compiler-2.0.20.zip
-```
+`./gradlew`関連のエラーは[ステップ5](#ステップ6 codespace再開時によくあるトラブル)を参照。
+ここではそれ以外のよくある問題をまとめる。
 
-### Q2: gradle wrapperでエラーが出る
-**A:** Gradleが見つからない場合、手動インストール（ステップ3-2参照）
+**`./gradlew run`でPermission deniedと出る場合**
 
-### Q3: ./gradlew run で Permission denied
-**A:** 実行権限を付与：
+実行権限を付与する。
+
 ```bash
 chmod +x gradlew
 ./gradlew run
 ```
 
-### Q4: Git pushでエラーが出る
-**A:** 認証が必要な場合：
+**Kotlinコンパイラのダウンロードが遅い場合**
+
+`wget`の代わりに`curl`を試す。
+
 ```bash
-# GitHubのPersonal Access Tokenを使用
-# Settings → Developer settings → Personal access tokens
+cd /tmp
+curl -LO https://github.com/JetBrains/kotlin/releases/download/v2.0.20/kotlin-compiler-2.0.20.zip
 ```
 
-### Q5: Codespacesが途中で止まる
-**A:** 
-1. Ctrl+C で中断
-2. ターミナルを再起動
-3. 該当コマンドを再実行
+**Git pushでエラーが出る場合**
+
+認証が必要な場合はPersonal Access Tokenを使用する（Settings → Developer settings → Personal access tokens）。
 
 ---
 
-## 📚 次のステップ
-
-セットアップが完了したら、学習プランに従って進めましょう：
-
-- **第1週**: 基礎文法（変数、制御構文、関数）
-- **第2週**: オブジェクト指向
-- **第3週**: コレクションと関数型プログラミング
-- **第4週**: 実践プロジェクト
-
----
-
-## 💡 便利なコマンド集
+## 便利なコマンド集
 
 ```bash
 # プロジェクト構造を確認
-tree -I 'build|.gradle' 2>/dev/null || ls -R src/
+find src/ -type f
 
-# ファイル検索
+# Kotlinファイルを検索
 find src/ -name "*.kt"
 
-# Kotlinファイルを直接実行（単一ファイル）
+# Kotlinファイルを直接実行（単一ファイル、Gradleを使わない場合）
 kotlinc YourFile.kt -include-runtime -d YourFile.jar
 kotlin YourFile.jar
 
-# Gradle タスク一覧
+# Gradleタスク一覧
 ./gradlew tasks
 
 # 依存関係の確認
 ./gradlew dependencies
+
+# クリーンビルド
+./gradlew clean build
 ```
-
----
-
-## 🎉 おめでとうございます！
-
-これでKotlin学習環境のセットアップは完璧です。このガイドを保存しておけば、次回から迷わずセットアップできます！
-
-Happy Coding! 🚀
