@@ -23,5 +23,5 @@ kotlin {
 }
 
 application {
-    mainClass.set("com.learning.Day03LoopsKt")
+    mainClass.set("com.learning.Day04FunctionsKt")
 }
